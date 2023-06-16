@@ -1,11 +1,3 @@
-<<<<<<< HEAD
-<?php 
-function dd($in)
-{
-    echo('<pre>');
-    var_dump($in);
-    die;
-=======
 <?php 
 function dd($in)
 {
@@ -16,5 +8,18 @@ function dd($in)
 function urlIs($value)
 {
     return $_SERVER['REQUEST_URI']==$value;
->>>>>>> 1b62c82 (new changes 2)
+}
+function abort($code='404')
+{
+    http_response_code($code);
+    require("views/{$code}.view.php");
+    die();
+}
+function authorize($condition, $status = Response::FORBIDDEN)
+{
+    if(!$condition)
+    {
+        abort($status);
+    }
+    return true;
 }
